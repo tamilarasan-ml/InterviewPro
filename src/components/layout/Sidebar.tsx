@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { navigationItems } from "../../data/navigation";
 
 const Sidebar = () => {
@@ -9,13 +10,19 @@ const Sidebar = () => {
 
       <nav className="mt-10 space-y-4">
         {navigationItems.map((item) => (
-          <a
+          <NavLink
             key={item.id}
-            href={item.path}
-            className="block hover:text-cyan-400"
+            to={item.path}
+            className={({ isActive }) =>
+              `block rounded-lg px-4 py-2 transition-colors ${
+                isActive
+                  ? "bg-cyan-500 text-white"
+                  : "text-gray-300 hover:bg-slate-800 hover:text-cyan-400"
+              }`
+            }
           >
             {item.title}
-          </a>
+          </NavLink>
         ))}
       </nav>
     </aside>
