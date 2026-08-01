@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import DashboardHeader from "../features/dashboard/components/DashboardHeader";
 import StatsCards from "../features/dashboard/components/StatsCards";
 import DailyGoal from "../features/dashboard/components/DailyGoal";
@@ -7,8 +9,11 @@ import RecentActivity from "../features/dashboard/components/RecentActivity";
 import Button from "../components/ui/Button";
 import Input from "../components/ui/Input";
 import Badge from "../components/ui/Badge";
+import Modal from "../components/ui/Modal";
 
 const Dashboard = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="space-y-8">
       <DashboardHeader />
@@ -90,9 +95,7 @@ const Dashboard = () => {
         </h2>
 
         <div className="flex flex-wrap gap-3">
-          <Badge>
-            Neutral
-          </Badge>
+          <Badge>Neutral</Badge>
 
           <Badge variant="success">
             Completed
@@ -114,6 +117,33 @@ const Dashboard = () => {
             Rectangle
           </Badge>
         </div>
+      </div>
+
+      {/* ---------------- Modal Component Test ---------------- */}
+
+      <div className="mt-10">
+        <h2 className="mb-4 text-xl font-semibold">
+          Modal Component Test
+        </h2>
+
+        <Button onClick={() => setIsModalOpen(true)}>
+          Open Modal
+        </Button>
+
+        <Modal
+          isOpen={isModalOpen}
+          title="InterviewPro AI"
+          onClose={() => setIsModalOpen(false)}
+        >
+          <p className="text-gray-600">
+            Congratulations! 🎉
+          </p>
+
+          <p className="mt-2 text-gray-600">
+            You have successfully built a reusable
+            Modal component.
+          </p>
+        </Modal>
       </div>
     </div>
   );

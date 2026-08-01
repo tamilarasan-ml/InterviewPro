@@ -6,6 +6,7 @@ import Practice from "../pages/Practice";
 import Analytics from "../pages/Analytics";
 import MockInterview from "../pages/MockInterview";
 import NotFound from "../pages/NotFound";
+import UIShowcase from "../pages/UIShowcase";
 
 const AppRoutes = () => {
   return (
@@ -16,6 +17,7 @@ const AppRoutes = () => {
       <Route   path="/mock-interview"   element={<MockInterview />} />
       <Route path="/analytics" element={<Analytics />} />
       <Route path="*" element={<NotFound />} />
+      <Route path="/ui-showcase" element={<UIShowcase />} />
     </Routes>
   );
 };
