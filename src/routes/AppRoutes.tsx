@@ -7,6 +7,8 @@ import Analytics from "../pages/Analytics";
 import MockInterview from "../pages/MockInterview";
 import NotFound from "../pages/NotFound";
 import UIShowcase from "../pages/UIShowcase";
+import TestApi from "../pages/TestApi";
+
 
 const AppRoutes = () => {
   return (
@@ -18,6 +20,7 @@ const AppRoutes = () => {
       <Route path="/analytics" element={<Analytics />} />
       <Route path="*" element={<NotFound />} />
       <Route path="/ui-showcase" element={<UIShowcase />} />
+      <Route path="/test-api" element={<TestApi />} />
     </Routes>
   );
 };

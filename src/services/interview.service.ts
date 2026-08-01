@@ -1,25 +1,11 @@
-import { api, ENDPOINTS } from ".";
+import { api } from "./api";
 
 export const InterviewService = {
-  getInterviews() {
-    return api.get(
-      ENDPOINTS.INTERVIEW.LIST
-    );
+  getDashboard() {
+    return api.get("/dashboard");
   },
 
-  startInterview(id: string) {
-    return api.post(
-      ENDPOINTS.INTERVIEW.START,
-      {
-        interviewId: id,
-      }
-    );
-  },
-
-  submitInterview(data: unknown) {
-    return api.post(
-      ENDPOINTS.INTERVIEW.SUBMIT,
-      data
-    );
+  getRecentActivities() {
+    return api.get("/recentActivities");
   },
 };
