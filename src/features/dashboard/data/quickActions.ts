@@ -1,9 +1,7 @@
-
 export interface QuickAction {
   id: number;
   title: string;
 }
-
 
 export const quickActions: QuickAction[] = [
   {
@@ -23,5 +21,3 @@ export const quickActions: QuickAction[] = [
     title: "STAR Builder",
   },
 ];
-
-

@@ -1,4 +1,4 @@
-import { quickActions } from "../data/dashboardData";
+import { quickActions } from "../data/quickActions";
 
 const QuickActions = () => {
   return (

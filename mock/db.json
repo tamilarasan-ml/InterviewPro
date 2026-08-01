@@ -1,0 +1,22 @@
+{
+  "dashboard": {
+    "progress": 42,
+    "mockInterviews": 12,
+    "accuracy": 87,
+    "currentStreak": 8
+  },
+  "recentActivities": [
+    {
+      "id": 1,
+      "title": "Completed Python Basics"
+    },
+    {
+      "id": 2,
+      "title": "Finished Agile Interview Practice"
+    },
+    {
+      "id": 3,
+      "title": "Reviewed AI Product Manager Questions"
+    }
+  ]
+}
