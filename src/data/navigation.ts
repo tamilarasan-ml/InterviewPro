@@ -26,4 +26,9 @@ export const navigationItems: NavigationItem[] = [
     title: "Analytics",
     path: "/analytics",
   },
+  {
+  id: 6,
+  title: "UI Showcase",
+  path: "/ui-showcase",
+},
 ];
