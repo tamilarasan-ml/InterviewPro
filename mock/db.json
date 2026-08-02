@@ -1,22 +1,38 @@
 {
-  "dashboard": {
-    "progress": 42,
-    "mockInterviews": 12,
-    "accuracy": 87,
-    "currentStreak": 8
-  },
-  "recentActivities": [
+  "dashboard": [
     {
       "id": 1,
-      "title": "Completed Python Basics"
+      "title": "Progress",
+      "value": "42%"
     },
     {
       "id": 2,
-      "title": "Finished Agile Interview Practice"
+      "title": "Mock Interviews",
+      "value": "12"
     },
     {
       "id": 3,
-      "title": "Reviewed AI Product Manager Questions"
+      "title": "Accuracy",
+      "value": "87%"
+    },
+    {
+      "id": 4,
+      "title": "Current Streak",
+      "value": "8 Days"
+    }
+  ],
+  "recentActivities": [
+    {
+      "id": 1,
+      "activity": "Completed Python Basics"
+    },
+    {
+      "id": 2,
+      "activity": "Finished Agile Interview Practice"
+    },
+    {
+      "id": 3,
+      "activity": "Reviewed AI Product Manager Questions"
     }
   ]
 }
