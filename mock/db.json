@@ -1,38 +1,22 @@
 {
-  "dashboard": [
-    {
-      "id": 1,
-      "title": "Progress",
-      "value": "42%"
-    },
-    {
-      "id": 2,
-      "title": "Mock Interviews",
-      "value": "12"
-    },
-    {
-      "id": 3,
-      "title": "Accuracy",
-      "value": "87%"
-    },
-    {
-      "id": 4,
-      "title": "Current Streak",
-      "value": "8 Days"
-    }
-  ],
+  "dashboard": {
+    "progress": 42,
+    "mockInterviews": 12,
+    "accuracy": 87,
+    "currentStreak": 8
+  },
   "recentActivities": [
     {
       "id": 1,
-      "activity": "Completed Python Basics"
+      "title": "Completed Python Basics"
     },
     {
       "id": 2,
-      "activity": "Finished Agile Interview Practice"
+      "title": "Finished Agile Interview Practice"
     },
     {
       "id": 3,
-      "activity": "Reviewed AI Product Manager Questions"
+      "title": "Reviewed AI Product Manager Questions"
     }
   ],
   "profile": {
@@ -60,5 +44,34 @@
     "learningProgress": 42,
     "completedInterviews": 18,
     "currentStreak": 8
-  }
+  },
+  "learning": [
+    {
+      "id": 1,
+      "title": "React Fundamentals",
+      "description": "Learn React from scratch.",
+      "difficulty": "Intermediate",
+      "duration": "6 Hours",
+      "progress": 65,
+      "category": "Frontend"
+    },
+    {
+      "id": 2,
+      "title": "TypeScript Essentials",
+      "description": "Master TypeScript for modern applications.",
+      "difficulty": "Intermediate",
+      "duration": "5 Hours",
+      "progress": 30,
+      "category": "Programming"
+    },
+    {
+      "id": 3,
+      "title": "AI Product Management",
+      "description": "Product thinking for AI-powered products.",
+      "difficulty": "Advanced",
+      "duration": "8 Hours",
+      "progress": 10,
+      "category": "AI"
+    }
+  ]
 }

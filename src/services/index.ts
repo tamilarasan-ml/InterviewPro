@@ -6,3 +6,4 @@ export { AuthService } from "./auth.service";
 export { UserService } from "./user.service";
 export { InterviewService } from "./interview.service";
 export * from "./profile.service";
+export * from "./learning.service";
