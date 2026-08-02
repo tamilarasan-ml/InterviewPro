@@ -7,6 +7,7 @@ import SearchBar from "../features/learn/components/SearchBar";
 import FilterBar from "../features/learn/components/FilterBar";
 import ContinueLearning from "../features/learn/components/ContinueLearning";
 import CourseCard from "../features/learn/components/CourseCard";
+import { EmptyState } from "../components/ui";
 
 const Learn = () => {
   const { courses, loading, error } = useLearning();
@@ -88,4 +89,8 @@ const Learn = () => {
   );
 };
 
+<EmptyState
+  title="No Courses Found"
+  description="Try another search."
+/>
 export default Learn;

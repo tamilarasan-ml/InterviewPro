@@ -1,6 +1,8 @@
 import type { HTMLAttributes, ReactNode } from "react";
 
 export type BadgeVariant =
+  | "primary"
+  | "secondary"
   | "success"
   | "warning"
   | "error"
