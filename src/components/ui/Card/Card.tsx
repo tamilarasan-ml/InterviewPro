@@ -1,18 +1,26 @@
-import { cn } from "../../../lib/utils";
-import type { CardProps } from "./Card.types";
+import type { ReactNode } from "react";
+
+interface CardProps {
+  children: ReactNode;
+  className?: string;
+}
 
 const Card = ({
   children,
-  className,
-  ...props
+  className = "",
 }: CardProps) => {
   return (
     <div
-      className={cn(
-        "rounded-xl border bg-white shadow-md p-6",
-        className
-      )}
-      {...props}
+      className={`
+        rounded-xl
+        bg-white
+        p-6
+        shadow-md
+        transition-all
+        duration-300
+        hover:shadow-lg
+        ${className}
+      `}
     >
       {children}
     </div>

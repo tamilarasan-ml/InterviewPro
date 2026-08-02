@@ -1,5 +1,7 @@
 import { Brain } from "lucide-react";
+
 import { useProfile } from "../../../hooks/useProfile";
+import { Card } from "../../../components/ui";
 
 const SkillsCard = () => {
   const { profile } = useProfile();
@@ -9,7 +11,7 @@ const SkillsCard = () => {
   }
 
   return (
-    <div className="rounded-xl bg-white p-6 shadow-md transition-all hover:shadow-lg">
+    <Card>
       <div className="mb-5 flex items-center gap-3">
         <Brain className="h-6 w-6 text-cyan-500" />
 
@@ -28,7 +30,7 @@ const SkillsCard = () => {
           </span>
         ))}
       </div>
-    </div>
+    </Card>
   );
 };
 
