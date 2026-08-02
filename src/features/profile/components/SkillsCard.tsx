@@ -2,6 +2,7 @@ import { Brain } from "lucide-react";
 
 import { useProfile } from "../../../hooks/useProfile";
 import { Card } from "../../../components/ui";
+import { Badge } from "../../../components/ui";
 
 const SkillsCard = () => {
   const { profile } = useProfile();
@@ -22,12 +23,13 @@ const SkillsCard = () => {
 
       <div className="flex flex-wrap gap-3">
         {profile.skills.map((skill) => (
-          <span
+          <Badge
             key={skill}
-            className="cursor-pointer rounded-full bg-cyan-100 px-4 py-2 text-sm font-medium text-cyan-700 transition-all duration-300 hover:scale-105 hover:bg-cyan-500 hover:text-white"
-          >
-            {skill}
-          </span>
+            variant="primary"
+            className="cursor-pointer transition-all duration-300 hover:scale-105"
+        >
+          {skill}
+        </Badge>
         ))}
       </div>
     </Card>

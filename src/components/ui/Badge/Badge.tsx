@@ -12,6 +12,12 @@ const Badge = ({
   "inline-flex items-center px-3 py-1 text-xs font-semibold tracking-wide";
 
   const variants = {
+    primary:
+      "bg-cyan-100 text-cyan-700",
+
+    secondary:
+      "bg-slate-100 text-slate-700",
+        
     success:
       "bg-green-100 text-green-700",
 
