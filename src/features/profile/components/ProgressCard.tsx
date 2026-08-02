@@ -1,5 +1,6 @@
 import { useProfile } from "../../../hooks/useProfile";
 
+
 const ProgressCard = () => {
   const { profile } = useProfile();
 

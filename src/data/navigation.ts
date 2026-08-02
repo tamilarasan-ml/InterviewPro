@@ -31,4 +31,9 @@ export const navigationItems: NavigationItem[] = [
   title: "UI Showcase",
   path: "/ui-showcase",
 },
+  {
+  id: 7,
+  title: "Profile",
+  path: "/profile"
+}
 ];
