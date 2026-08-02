@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { ReactNode } from "react";
 
 import { AuthContext } from "./AuthContext";
-import type { LoginRequest, User } from "./auth.types";
+import type { LoginRequest, User } from "../types/auth.types";
 
 interface AuthProviderProps {
   children: ReactNode;

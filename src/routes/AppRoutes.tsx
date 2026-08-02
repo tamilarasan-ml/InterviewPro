@@ -11,6 +11,7 @@ import NotFound from "../pages/NotFound";
 import UIShowcase from "../pages/UIShowcase";
 import TestApi from "../pages/TestApi";
 import Login from "../pages/Login";
+import Profile from "../pages/Profile";
 
 import ProtectedRoute from "../auth/ProtectedRoute";
 
@@ -103,7 +104,14 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
-
+      <Route
+        path="/profile"
+        element={
+         <ProtectedRoute>
+           <Profile />
+         </ProtectedRoute>
+        }
+      />
       {/* 404 */}
       <Route path="*" element={<NotFound />} />
     </Routes>
