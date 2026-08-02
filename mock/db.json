@@ -34,5 +34,31 @@
       "id": 3,
       "activity": "Reviewed AI Product Manager Questions"
     }
-  ]
+  ],
+  "profile": {
+    "id": 1,
+    "name": "Tamil Arasan",
+    "email": "test@test.com",
+    "avatar": "https://i.pravatar.cc/200?img=12",
+    "role": "AI Product Manager",
+    "experience": "12+ Years",
+    "location": "Chennai, India",
+    "careerGoal": "Build AI Products that simplify interview preparation",
+    "skills": [
+      "Product Management",
+      "Scrum",
+      "Agile",
+      "Business Analysis",
+      "Generative AI"
+    ],
+    "certifications": [
+      "PSM I",
+      "PSM II",
+      "SAFe Scrum Master",
+      "SAFe POPM"
+    ],
+    "learningProgress": 42,
+    "completedInterviews": 18,
+    "currentStreak": 8
+  }
 }
