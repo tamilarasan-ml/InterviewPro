@@ -42,12 +42,39 @@ export const useDashboardStore = create<DashboardStore>((set) => ({
         InterviewService.getRecentActivities(),
       ]);
 
+      const dashboard = dashboardResponse.data;
+
       set({
-        stats: dashboardResponse.data,
-        activities: activityResponse.data,
-        loading: false,
-      });
-    } catch {
+        stats: [
+          {
+            id: 1,
+            title: "Progress",
+            value: `${dashboard.progress}%`,
+          },
+          {
+            id: 2,
+            title: "Mock Interviews",
+            value: `${dashboard.mockInterviews}`,
+          },
+          {
+            id: 3,
+            title: "Accuracy",
+            value: `${dashboard.accuracy}%`,
+         },
+        {
+          id: 4,
+          title: "Current Streak",
+          value: `${dashboard.currentStreak} Days`,
+        },
+      ],
+
+      activities: activityResponse.data,
+
+      loading: false,
+    });
+    } catch(error) {
+      console.error(error);
+      
       set({
         loading: false,
         error: "Unable to load dashboard data.",

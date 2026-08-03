@@ -20,7 +20,7 @@ export type { ProgressBarProps } from "./ProgressBar";
 export { default as EmptyState } from "./EmptyState";
 export type { EmptyStateProps } from "./EmptyState";
 
-export { default } from "./PageHeader";
+export { default as PageHeader } from "./PageHeader";
 export type { PageHeaderProps } from "./PageHeader";
 
 export { default as StatCard } from "./StatCard";

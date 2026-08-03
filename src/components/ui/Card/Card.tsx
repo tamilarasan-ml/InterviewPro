@@ -1,6 +1,10 @@
-import type { ReactNode } from "react";
+import type {
+  HTMLAttributes,
+  ReactNode,
+} from "react";
 
-interface CardProps {
+interface CardProps
+  extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   className?: string;
 }
@@ -8,6 +12,7 @@ interface CardProps {
 const Card = ({
   children,
   className = "",
+  ...props
 }: CardProps) => {
   return (
     <div
@@ -21,6 +26,7 @@ const Card = ({
         hover:shadow-lg
         ${className}
       `}
+      {...props}
     >
       {children}
     </div>
