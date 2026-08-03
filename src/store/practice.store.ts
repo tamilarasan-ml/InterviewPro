@@ -31,6 +31,8 @@ interface PracticeStore {
 
   nextQuestion: () => void;
 
+  resetPractice: () => void;
+
   canStartPractice: () => boolean;
 }
 
@@ -67,6 +69,14 @@ export const usePracticeStore =
         currentQuestionIndex:
           state.currentQuestionIndex + 1,
       })),
+
+    resetPractice: () =>
+      set({
+        selectedCategory: null,
+        selectedDifficulty: "Beginner",
+        questions: [],
+        currentQuestionIndex: 0,
+      }),
 
     canStartPractice: () => {
       const {
