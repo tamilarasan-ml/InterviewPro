@@ -14,6 +14,8 @@ import Login from "../pages/Login";
 import Profile from "../pages/Profile";
 
 import ProtectedRoute from "../auth/ProtectedRoute";
+import PracticeSession from "../pages/PracticeSession";
+
 
 const AppRoutes = () => {
   return (
@@ -56,6 +58,16 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/practice/session"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+               <PracticeSession />
+            </MainLayout>
+          </ProtectedRoute>
+      }
+    />
 
       {/* Mock Interview */}
       <Route
@@ -108,13 +120,17 @@ const AppRoutes = () => {
         path="/profile"
         element={
          <ProtectedRoute>
+          <MainLayout>
            <Profile />
+           </MainLayout>
          </ProtectedRoute>
         }
       />
       {/* 404 */}
       <Route path="*" element={<NotFound />} />
     </Routes>
+  
+        
   );
 };
 
