@@ -2,15 +2,30 @@ import { useNavigate } from "react-router-dom";
 
 import { Button } from "../../../components/ui";
 import { usePractice } from "../../../hooks/usePractice";
+import { PracticeService } from "../../../services/practice.service";
 
 const StartPracticeButton = () => {
   const navigate = useNavigate();
 
-  const { selectedCategory } = usePractice();
+  const {
+    selectedCategory,
+    selectedDifficulty,
+    setQuestions,
+  } = usePractice();
 
   const isEnabled = selectedCategory !== null;
 
-  const handleStartPractice = () => {
+  const handleStartPractice = async () => {
+    if (!selectedCategory) return;
+
+    const questions =
+      await PracticeService.getQuestions(
+        selectedCategory,
+        selectedDifficulty
+      );
+
+    setQuestions(questions);
+
     navigate("/practice/session");
   };
 

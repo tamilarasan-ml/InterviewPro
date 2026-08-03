@@ -1,6 +1,21 @@
-import { PageHeader } from "../components/ui";
+import { Navigate } from "react-router-dom";
+
+import { PageHeader, Card } from "../components/ui";
+import { usePractice } from "../hooks/usePractice";
 
 const PracticeSession = () => {
+  const {
+    questions,
+    currentQuestionIndex,
+  } = usePractice();
+
+  if (questions.length === 0) {
+    return <Navigate to="/practice" replace />;
+  }
+
+  const currentQuestion =
+    questions[currentQuestionIndex];
+
   return (
     <div className="space-y-8">
       <PageHeader
@@ -8,15 +23,15 @@ const PracticeSession = () => {
         subtitle="Answer interview questions one by one."
       />
 
-      <div className="rounded-xl bg-white p-8 shadow-md">
-        <h2 className="text-2xl font-semibold">
-          Question 1
+      <Card>
+        <h2 className="text-xl font-semibold text-cyan-600">
+          Question {currentQuestionIndex + 1}
         </h2>
 
-        <p className="mt-4 text-gray-600">
-          Your interview questions will appear here.
+        <p className="mt-6 text-lg text-slate-700">
+          {currentQuestion.question}
         </p>
-      </div>
+      </Card>
     </div>
   );
 };
