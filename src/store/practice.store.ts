@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 import { practiceCategories } from "../data/practice.data";
+import type { PracticeQuestion } from "../data/practiceQuestions.data";
 
 import type {
   DifficultyLevel,
@@ -14,11 +15,21 @@ interface PracticeStore {
 
   selectedDifficulty: DifficultyLevel;
 
+  questions: PracticeQuestion[];
+
+  currentQuestionIndex: number;
+
   selectCategory: (id: number) => void;
 
   selectDifficulty: (
     difficulty: DifficultyLevel
   ) => void;
+
+  setQuestions: (
+    questions: PracticeQuestion[]
+  ) => void;
+
+  nextQuestion: () => void;
 
   canStartPractice: () => boolean;
 }
@@ -31,6 +42,10 @@ export const usePracticeStore =
 
     selectedDifficulty: "Beginner",
 
+    questions: [],
+
+    currentQuestionIndex: 0,
+
     selectCategory: (id) =>
       set({
         selectedCategory: id,
@@ -40,6 +55,18 @@ export const usePracticeStore =
       set({
         selectedDifficulty: difficulty,
       }),
+
+    setQuestions: (questions) =>
+      set({
+        questions,
+        currentQuestionIndex: 0,
+      }),
+
+    nextQuestion: () =>
+      set((state) => ({
+        currentQuestionIndex:
+          state.currentQuestionIndex + 1,
+      })),
 
     canStartPractice: () => {
       const {
