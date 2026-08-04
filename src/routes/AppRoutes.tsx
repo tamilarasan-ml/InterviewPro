@@ -16,6 +16,7 @@ import Profile from "../pages/Profile";
 import ProtectedRoute from "../auth/ProtectedRoute";
 import PracticeSession from "../pages/PracticeSession";
 import PracticeResult from "../pages/PracticeResult";
+import InterviewSession from "../pages/InterviewSession";
 
 
 const AppRoutes = () => {
@@ -90,7 +91,16 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
-
+      <Route
+        path="/mock-interview/session"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <InterviewSession />
+            </MainLayout>
+          </ProtectedRoute>
+        } 
+      />
       {/* Analytics */}
       <Route
         path="/analytics"
