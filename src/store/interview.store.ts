@@ -3,10 +3,14 @@ import { create } from "zustand";
 import { interviewCategories } from "../data/interview.data";
 import type { InterviewQuestion } from "../data/interviewQuestions.data";
 
+import { INTERVIEW_DURATION } from "../constants/interview.constants";
+
 import type {
   DifficultyLevel,
   PracticeCategory,
 } from "../types/practice.types";
+
+import type { InterviewStatus } from "../types/interview.types";
 
 interface InterviewStore {
   categories: PracticeCategory[];
@@ -19,6 +23,12 @@ interface InterviewStore {
 
   currentQuestionIndex: number;
 
+  status: InterviewStatus;
+
+  timeRemaining: number;
+
+  isRunning: boolean;
+
   selectCategory: (id: number) => void;
 
   selectDifficulty: (
@@ -30,6 +40,15 @@ interface InterviewStore {
   ) => void;
 
   nextQuestion: () => void;
+
+  startInterview: () => void;
+
+  finishInterview: () => void;
+
+  setTimeRemaining: (
+    time: number
+  ) => void;
+  tickTimer: () => void;
 
   resetInterview: () => void;
 
@@ -47,6 +66,12 @@ export const useInterviewStore =
     questions: [],
 
     currentQuestionIndex: 0,
+
+    status: "idle",
+
+    timeRemaining: INTERVIEW_DURATION,
+
+    isRunning: false,
 
     selectCategory: (id) =>
       set({
@@ -70,12 +95,41 @@ export const useInterviewStore =
           state.currentQuestionIndex + 1,
       })),
 
+    startInterview: () =>
+      set({
+        status: "running",
+        isRunning: true,
+        timeRemaining: INTERVIEW_DURATION,
+      }),
+
+    finishInterview: () =>
+      set({
+        status: "completed",
+        isRunning: false,
+      }),
+
+    setTimeRemaining: (time) =>
+      set({
+        timeRemaining: time,
+      }),
+
+    tickTimer: () =>
+  set((state) => ({
+    timeRemaining: Math.max(
+      state.timeRemaining - 1,
+      0
+    ),
+  })),
+
     resetInterview: () =>
       set({
         selectedCategory: null,
         selectedDifficulty: "Beginner",
         questions: [],
         currentQuestionIndex: 0,
+        status: "idle",
+        timeRemaining: INTERVIEW_DURATION,
+        isRunning: false,
       }),
 
     canStartInterview: () => {
