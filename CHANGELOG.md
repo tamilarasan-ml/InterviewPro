@@ -33,3 +33,18 @@
 - Session Management
 - Result Summary
 - Route Protection
+
+## Sprint 8
+
+### IPAI-95 – Interview Engine
+
+- Added Interview State Machine
+- Added Interview Timer
+- Added Interview Constants
+- Added Timer Hook
+- Added Question Navigation
+- Added Finish Interview Flow
+- Added Interview Result Page
+- Added Interview Result Route
+- Added Multi-category Interview Questions
+- Completed Full Regression Testing

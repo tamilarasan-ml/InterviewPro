@@ -11,6 +11,7 @@ const StartInterviewButton = () => {
   const {
     selectedCategory,
     setQuestions,
+    startInterview,
   } = useInterview();
 
   const isEnabled = selectedCategory !== null;
@@ -24,6 +25,8 @@ const StartInterviewButton = () => {
       (question) =>
         question.categoryId === selectedCategory
     );
+
+    startInterview();
 
     setQuestions(questions);
 
