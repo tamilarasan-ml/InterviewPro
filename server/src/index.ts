@@ -2,6 +2,9 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import interviewRoutes from "./routes/interview.routes";
+import dashboardRoutes from "./routes/dashboard.routes";
+import learningRoutes from "./routes/learning.routes";
+import profileRoutes from "./routes/profile.routes";
 
 dotenv.config();
 
@@ -11,6 +14,9 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/interview", interviewRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/learning", learningRoutes);
+app.use("/api/profile", profileRoutes);
 
 app.get("/api/health", (_, res) => {
   res.status(200).json({

@@ -6,6 +6,8 @@ export const InterviewService = {
   },
 
   getRecentActivities() {
-    return api.get("/recentActivities");
+    return api.get(
+      "/dashboard/recentActivities"
+    );
   },
 };

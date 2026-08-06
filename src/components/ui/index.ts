@@ -25,3 +25,6 @@ export type { PageHeaderProps } from "./PageHeader";
 
 export { default as StatCard } from "./StatCard";
 export type { StatCardProps } from "./StatCard";
+
+export { default as TextArea } from "./TextArea";
+export type { TextAreaProps } from "./TextArea";

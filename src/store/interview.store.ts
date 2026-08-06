@@ -10,7 +10,16 @@ import type {
   PracticeCategory,
 } from "../types/practice.types";
 
-import type { InterviewStatus } from "../types/interview.types";
+import type {
+  InterviewStatus,
+  InterviewFeedback,
+} from "../types/interview.types";
+
+export interface InterviewAnswer {
+  questionId: number;
+  answer: string;
+  feedback: InterviewFeedback;
+}
 
 interface InterviewStore {
   categories: PracticeCategory[];
@@ -28,6 +37,8 @@ interface InterviewStore {
   timeRemaining: number;
 
   isRunning: boolean;
+
+  interviewAnswers: InterviewAnswer[];
 
   selectCategory: (id: number) => void;
 
@@ -48,7 +59,14 @@ interface InterviewStore {
   setTimeRemaining: (
     time: number
   ) => void;
+
   tickTimer: () => void;
+
+  addInterviewAnswer: (
+    answer: InterviewAnswer
+  ) => void;
+
+  clearInterviewAnswers: () => void;
 
   resetInterview: () => void;
 
@@ -72,6 +90,8 @@ export const useInterviewStore =
     timeRemaining: INTERVIEW_DURATION,
 
     isRunning: false,
+
+    interviewAnswers: [],
 
     selectCategory: (id) =>
       set({
@@ -114,12 +134,25 @@ export const useInterviewStore =
       }),
 
     tickTimer: () =>
-  set((state) => ({
-    timeRemaining: Math.max(
-      state.timeRemaining - 1,
-      0
-    ),
-  })),
+      set((state) => ({
+        timeRemaining: Math.max(
+          state.timeRemaining - 1,
+          0
+        ),
+      })),
+
+    addInterviewAnswer: (answer) =>
+      set((state) => ({
+        interviewAnswers: [
+          ...state.interviewAnswers,
+          answer,
+        ],
+      })),
+
+    clearInterviewAnswers: () =>
+      set({
+        interviewAnswers: [],
+      }),
 
     resetInterview: () =>
       set({
@@ -130,6 +163,7 @@ export const useInterviewStore =
         status: "idle",
         timeRemaining: INTERVIEW_DURATION,
         isRunning: false,
+        interviewAnswers: [],
       }),
 
     canStartInterview: () => {
