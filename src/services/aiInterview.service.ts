@@ -2,6 +2,7 @@ import { api } from "./api";
 
 import type {
   InterviewFeedback,
+  InterviewReport,
 } from "../types/interview.types";
 
 export const AIInterviewService = {
@@ -16,5 +17,14 @@ export const AIInterviewService = {
     );
 
     return response.data.feedback;
+  },
+
+  async saveInterviewReport(
+    report: InterviewReport
+  ): Promise<void> {
+    await api.post(
+      "/interview",
+      report
+    );
   },
 };
