@@ -22,6 +22,8 @@ import PracticeResult from "../pages/PracticeResult";
 import InterviewSession from "../pages/InterviewSession";
 import InterviewResult from "../pages/InterviewResult";
 import InterviewDetails from "../pages/InterviewDetails";
+import ResumeAnalyzer from "../pages/ResumeAnalyzer";
+import CareerCoach from "../pages/CareerCoach";
 
 const AppRoutes = () => {
   return (
@@ -192,6 +194,28 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/resume-analyzer"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <ResumeAnalyzer />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/career-coach"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <CareerCoach />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+  
+
 
       {/* 404 */}
       <Route
