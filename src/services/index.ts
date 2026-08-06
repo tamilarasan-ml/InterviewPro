@@ -12,3 +12,4 @@ export { PracticeService } from "./practice.service";
 
 export { InterviewService } from "./interview.service";
 export { AIInterviewService } from "./aiInterview.service";
+export { InterviewHistoryService } from "./interviewHistory.service";

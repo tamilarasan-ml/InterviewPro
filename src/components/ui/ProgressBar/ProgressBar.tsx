@@ -3,6 +3,7 @@ import type { ProgressBarProps } from "./ProgressBar.types";
 
 const ProgressBar = ({
   value,
+  label = "Progress",
   showLabel = true,
   color = "primary",
   className,
@@ -15,13 +16,20 @@ const ProgressBar = ({
     danger: "bg-red-500",
   };
 
-  const progress = Math.min(Math.max(value, 0), 100);
+  const progress = Math.min(
+    Math.max(value, 0),
+    100
+  );
 
   return (
-    <div className={cn("w-full", className)} {...props}>
+    <div
+      className={cn("w-full", className)}
+      {...props}
+    >
       {showLabel && (
         <div className="mb-2 flex justify-between text-sm font-medium text-slate-600">
-          <span>Progress</span>
+          <span>{label}</span>
+
           <span>{progress}%</span>
         </div>
       )}

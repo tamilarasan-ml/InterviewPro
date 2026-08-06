@@ -23,17 +23,22 @@ export const navigationItems: NavigationItem[] = [
   },
   {
     id: 5,
+    title: "Interview History",
+    path: "/interview-history",
+  },
+  {
+    id: 6,
     title: "Analytics",
     path: "/analytics",
   },
   {
-  id: 6,
-  title: "UI Showcase",
-  path: "/ui-showcase",
-},
+    id: 7,
+    title: "UI Showcase",
+    path: "/ui-showcase",
+  },
   {
-  id: 7,
-  title: "Profile",
-  path: "/profile"
-}
+    id: 8,
+    title: "Profile",
+    path: "/profile",
+  },
 ];

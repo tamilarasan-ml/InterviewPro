@@ -7,6 +7,7 @@ import Learn from "../pages/Learn";
 import Practice from "../pages/Practice";
 import Analytics from "../pages/Analytics";
 import MockInterview from "../pages/MockInterview";
+import InterviewHistory from "../pages/InterviewHistory";
 import NotFound from "../pages/NotFound";
 import UIShowcase from "../pages/UIShowcase";
 import TestApi from "../pages/TestApi";
@@ -14,19 +15,24 @@ import Login from "../pages/Login";
 import Profile from "../pages/Profile";
 
 import ProtectedRoute from "../auth/ProtectedRoute";
+
 import PracticeSession from "../pages/PracticeSession";
 import PracticeResult from "../pages/PracticeResult";
+
 import InterviewSession from "../pages/InterviewSession";
 import InterviewResult from "../pages/InterviewResult";
-
+import InterviewDetails from "../pages/InterviewDetails";
 
 const AppRoutes = () => {
   return (
     <Routes>
       {/* Public Route */}
-      <Route path="/login" element={<Login />} />
+      <Route
+        path="/login"
+        element={<Login />}
+      />
 
-      {/* Protected Dashboard */}
+      {/* Dashboard */}
       <Route
         path="/"
         element={
@@ -61,16 +67,18 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+
       <Route
         path="/practice/session"
         element={
           <ProtectedRoute>
             <MainLayout>
-               <PracticeSession />
+              <PracticeSession />
             </MainLayout>
           </ProtectedRoute>
-      }
-    />
+        }
+      />
+
       <Route
         path="/practice/result"
         element={
@@ -81,6 +89,7 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+
       {/* Mock Interview */}
       <Route
         path="/mock-interview"
@@ -92,6 +101,7 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+
       <Route
         path="/mock-interview/session"
         element={
@@ -100,7 +110,7 @@ const AppRoutes = () => {
               <InterviewSession />
             </MainLayout>
           </ProtectedRoute>
-        } 
+        }
       />
 
       <Route
@@ -114,6 +124,27 @@ const AppRoutes = () => {
         }
       />
 
+      {/* Interview History */}
+      <Route
+        path="/interview-history"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <InterviewHistory />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+          path="/interview-history/:id"
+          element={
+            <ProtectedRoute>
+              <MainLayout>
+                  <InterviewDetails />
+              </MainLayout>
+            </ProtectedRoute>
+          }
+      />
       {/* Analytics */}
       <Route
         path="/analytics"
@@ -149,21 +180,25 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+
+      {/* Profile */}
       <Route
         path="/profile"
         element={
-         <ProtectedRoute>
-          <MainLayout>
-           <Profile />
-           </MainLayout>
-         </ProtectedRoute>
+          <ProtectedRoute>
+            <MainLayout>
+              <Profile />
+            </MainLayout>
+          </ProtectedRoute>
         }
       />
+
       {/* 404 */}
-      <Route path="*" element={<NotFound />} />
+      <Route
+        path="*"
+        element={<NotFound />}
+      />
     </Routes>
-  
-        
   );
 };
 
