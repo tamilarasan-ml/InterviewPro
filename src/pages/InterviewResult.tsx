@@ -7,7 +7,12 @@ import {
   PageHeader,
   Card,
   Button,
+  ProgressBar,
+  Badge,
+  StatCard,
 } from "../components/ui";
+
+import { Trophy } from "lucide-react";
 
 import { useInterview } from "../hooks/useInterview";
 
@@ -42,7 +47,7 @@ const InterviewResult = () => {
 
   const average = (
     selector: (
-      value: typeof interviewAnswers[number]
+      item: typeof interviewAnswers[number]
     ) => number
   ) => {
     if (interviewAnswers.length === 0) {
@@ -72,8 +77,7 @@ const InterviewResult = () => {
 
   const technicalKnowledge = average(
     (item) =>
-      item.feedback
-        .technicalKnowledge
+      item.feedback.technicalKnowledge
   );
 
   const domainKnowledge = average(
@@ -98,86 +102,114 @@ const InterviewResult = () => {
 
   return (
     <div className="space-y-8">
+
       <PageHeader
         title="AI Interview Report"
-        subtitle="Here's your AI-powered interview evaluation."
+        subtitle="Your interview has been evaluated successfully."
+      />
+
+      <StatCard
+        title="Overall Score"
+        value={`${overallScore}%`}
+        icon={
+          <Trophy className="h-10 w-10" />
+        }
       />
 
       <Card>
+
         <div className="space-y-6">
 
-          <div>
-            <h3 className="text-lg font-semibold">
-              Category
-            </h3>
-
-            <p>
-              {category?.name}
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold">
-              Difficulty
-            </h3>
-
-            <p>
-              {selectedDifficulty}
-            </p>
-          </div>
-
-          <hr />
-
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-6">
 
             <div>
-              <strong>
-                Overall Score
-              </strong>
+              <h3 className="font-semibold text-slate-700">
+                Category
+              </h3>
 
-              <p>
-                {overallScore}%
+              <p className="mt-1 text-slate-600">
+                {category?.name}
               </p>
             </div>
 
             <div>
-              <strong>
+              <h3 className="font-semibold text-slate-700">
+                Difficulty
+              </h3>
+
+              <p className="mt-1 text-slate-600">
+                {selectedDifficulty}
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-slate-700">
+                Questions
+              </h3>
+
+              <p className="mt-1 text-slate-600">
+                {questions.length}
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-slate-700">
+                Completed
+              </h3>
+
+              <p className="mt-1 text-slate-600">
+                {interviewAnswers.length}
+              </p>
+            </div>
+
+          </div>
+
+          <hr />
+
+          <div className="space-y-6">
+
+            <div>
+              <h4 className="mb-2 font-semibold">
                 Communication
-              </strong>
+              </h4>
 
-              <p>
-                {communication}%
-              </p>
+              <ProgressBar
+                value={communication}
+                color="primary"
+              />
             </div>
 
             <div>
-              <strong>
-                Technical
-              </strong>
+              <h4 className="mb-2 font-semibold">
+                Technical Knowledge
+              </h4>
 
-              <p>
-                {technicalKnowledge}%
-              </p>
+              <ProgressBar
+                value={technicalKnowledge}
+                color="success"
+              />
             </div>
 
             <div>
-              <strong>
-                Domain
-              </strong>
+              <h4 className="mb-2 font-semibold">
+                Domain Knowledge
+              </h4>
 
-              <p>
-                {domainKnowledge}%
-              </p>
+              <ProgressBar
+                value={domainKnowledge}
+                color="warning"
+              />
             </div>
 
             <div>
-              <strong>
+              <h4 className="mb-2 font-semibold">
                 Confidence
-              </strong>
+              </h4>
 
-              <p>
-                {confidence}%
-              </p>
+              <ProgressBar
+                value={confidence}
+                color="danger"
+              />
             </div>
 
           </div>
@@ -185,62 +217,83 @@ const InterviewResult = () => {
           <hr />
 
           <div>
-            <h3 className="font-semibold">
+
+            <h3 className="mb-4 text-lg font-semibold">
               Strengths
             </h3>
 
-            <ul className="list-disc pl-6">
+            <div className="flex flex-wrap gap-3">
               {latestFeedback?.strengths.map(
                 (strength) => (
-                  <li key={strength}>
+                  <Badge
+                    key={strength}
+                    variant="primary"
+                  >
                     {strength}
-                  </li>
+                  </Badge>
                 )
               )}
-            </ul>
+            </div>
+
           </div>
 
+          <hr />
+
           <div>
-            <h3 className="font-semibold">
+
+            <h3 className="mb-4 text-lg font-semibold">
               Areas for Improvement
             </h3>
 
-            <ul className="list-disc pl-6">
+            <div className="flex flex-wrap gap-3">
               {latestFeedback?.areasForImprovement.map(
                 (item) => (
-                  <li key={item}>
+                  <Badge
+                    key={item}
+                    variant="warning"
+                  >
                     {item}
-                  </li>
+                  </Badge>
                 )
               )}
-            </ul>
+            </div>
+
           </div>
 
+          <hr />
+
           <div>
-            <h3 className="font-semibold">
+
+            <h3 className="text-lg font-semibold">
               Suggested Answer
             </h3>
 
-            <p>
+            <p className="mt-3 text-slate-600 leading-7">
               {
                 latestFeedback?.suggestedAnswer
               }
             </p>
+
           </div>
 
+          <hr />
+
           <div>
-            <h3 className="font-semibold">
-              Recommendation
+
+            <h3 className="text-lg font-semibold">
+              AI Recommendation
             </h3>
 
-            <p>
+            <p className="mt-3 rounded-lg bg-cyan-50 p-4 text-slate-700">
               {
                 latestFeedback?.recommendation
               }
             </p>
+
           </div>
 
           <div className="flex justify-end">
+
             <Button
               variant="primary"
               onClick={
@@ -249,10 +302,13 @@ const InterviewResult = () => {
             >
               Interview Again
             </Button>
+
           </div>
 
         </div>
+
       </Card>
+
     </div>
   );
 };
