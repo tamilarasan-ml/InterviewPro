@@ -5,6 +5,7 @@ import interviewRoutes from "./routes/interview.routes";
 import dashboardRoutes from "./routes/dashboard.routes";
 import learningRoutes from "./routes/learning.routes";
 import profileRoutes from "./routes/profile.routes";
+import "./database/database";
 
 dotenv.config();
 
