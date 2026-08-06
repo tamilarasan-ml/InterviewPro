@@ -1,16 +1,17 @@
-import {
-  Navigate,
-  useNavigate,
-} from "react-router-dom";
+import { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import {
   PageHeader,
   Card,
   Button,
+  TextArea,
 } from "../components/ui";
 
 import { useInterview } from "../hooks/useInterview";
 import useInterviewTimer from "../hooks/useInterviewTimer";
+
+import { AIInterviewService } from "../services";
 
 const InterviewSession = () => {
   const navigate = useNavigate();
@@ -21,9 +22,15 @@ const InterviewSession = () => {
     timeRemaining,
     nextQuestion,
     finishInterview,
+    addInterviewAnswer,
   } = useInterview();
 
   useInterviewTimer();
+
+  const [answer, setAnswer] = useState("");
+
+  const [loading, setLoading] =
+    useState(false);
 
   if (questions.length === 0) {
     return (
@@ -51,14 +58,45 @@ const InterviewSession = () => {
     .toString()
     .padStart(2, "0")}`;
 
-  const handleNext = () => {
-    if (isLastQuestion) {
-      finishInterview();
-      navigate("/mock-interview/result");
+  const handleSubmit = async () => {
+    if (!answer.trim()) {
+      alert("Please enter your answer.");
       return;
     }
 
-    nextQuestion();
+    try {
+      setLoading(true);
+
+      const feedback =
+        await AIInterviewService.generateFeedback(
+          answer
+        );
+
+      addInterviewAnswer({
+        questionId: currentQuestion.id,
+        answer,
+        feedback,
+      });
+
+      setAnswer("");
+
+      if (isLastQuestion) {
+        finishInterview();
+        navigate(
+          "/mock-interview/result"
+        );
+      } else {
+        nextQuestion();
+      }
+    } catch (error) {
+      console.error(error);
+
+      alert(
+        "Failed to generate AI feedback."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -70,26 +108,44 @@ const InterviewSession = () => {
 
       <Card>
         <h2 className="text-xl font-semibold text-cyan-600">
-          Question {currentQuestionIndex + 1} of{" "}
+          Question{" "}
+          {currentQuestionIndex + 1} of{" "}
           {questions.length}
         </h2>
 
         <div className="mt-2 text-lg font-semibold text-red-600">
-          Time Remaining: {formattedTime}
+          Time Remaining:
+          {" "}
+          {formattedTime}
         </div>
 
         <p className="mt-6 text-lg text-slate-700">
           {currentQuestion.question}
         </p>
 
+        <div className="mt-6">
+          <TextArea
+            label="Your Answer"
+            placeholder="Type your interview answer here..."
+            value={answer}
+            onChange={(e) =>
+              setAnswer(e.target.value)
+            }
+            required
+          />
+        </div>
+
         <div className="mt-8 flex justify-end">
           <Button
             variant="primary"
-            onClick={handleNext}
+            onClick={handleSubmit}
+            disabled={loading}
           >
-            {isLastQuestion
+            {loading
+              ? "Evaluating..."
+              : isLastQuestion
               ? "Finish Interview"
-              : "Next Question"}
+              : "Submit & Next"}
           </Button>
         </div>
       </Card>
