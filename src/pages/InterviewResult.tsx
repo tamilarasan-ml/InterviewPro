@@ -2,6 +2,10 @@ import {
   Navigate,
   useNavigate,
 } from "react-router-dom";
+import {
+  useEffect,
+  useRef,
+} from "react";
 
 import {
   PageHeader,
@@ -15,9 +19,14 @@ import {
 import { Trophy } from "lucide-react";
 
 import { useInterview } from "../hooks/useInterview";
+import { AIInterviewService } from "../services";
+
+import type { InterviewReport } from "../types";
 
 const InterviewResult = () => {
   const navigate = useNavigate();
+
+  const hasSavedReport = useRef(false);
 
   const {
     categories,
@@ -95,6 +104,60 @@ const InterviewResult = () => {
       interviewAnswers.length - 1
     ]?.feedback;
 
+  useEffect(() => {
+    if (
+      hasSavedReport.current ||
+      !latestFeedback ||
+      !category
+    ) {
+      return;
+    }
+
+    hasSavedReport.current = true;
+
+    const report: InterviewReport = {
+      category: category.name,
+      difficulty: selectedDifficulty,
+      totalQuestions: questions.length,
+
+      overallScore,
+      communication,
+      technicalKnowledge,
+      domainKnowledge,
+      confidence,
+
+      strengths: latestFeedback.strengths,
+      areasForImprovement:
+        latestFeedback.areasForImprovement,
+
+      suggestedAnswer:
+        latestFeedback.suggestedAnswer,
+
+      recommendation:
+        latestFeedback.recommendation,
+    };
+
+    AIInterviewService
+      .saveInterviewReport(report)
+      .catch((error) => {
+        console.error(
+          "Failed to save interview report:",
+          error
+        );
+      });
+
+  }, [
+    category,
+    selectedDifficulty,
+    questions.length,
+    overallScore,
+    communication,
+    technicalKnowledge,
+    domainKnowledge,
+    confidence,
+    latestFeedback,
+  ]);
+
   const handleInterviewAgain = () => {
     resetInterview();
     navigate("/mock-interview");
@@ -102,7 +165,6 @@ const InterviewResult = () => {
 
   return (
     <div className="space-y-8">
-
       <PageHeader
         title="AI Interview Report"
         subtitle="Your interview has been evaluated successfully."
@@ -117,11 +179,8 @@ const InterviewResult = () => {
       />
 
       <Card>
-
         <div className="space-y-6">
-
           <div className="grid grid-cols-2 gap-6">
-
             <div>
               <h3 className="font-semibold text-slate-700">
                 Category
@@ -161,13 +220,11 @@ const InterviewResult = () => {
                 {interviewAnswers.length}
               </p>
             </div>
-
           </div>
 
           <hr />
 
           <div className="space-y-6">
-
             <div>
               <h4 className="mb-2 font-semibold">
                 Communication
@@ -211,13 +268,11 @@ const InterviewResult = () => {
                 color="danger"
               />
             </div>
-
           </div>
 
           <hr />
 
           <div>
-
             <h3 className="mb-4 text-lg font-semibold">
               Strengths
             </h3>
@@ -234,13 +289,11 @@ const InterviewResult = () => {
                 )
               )}
             </div>
-
           </div>
 
           <hr />
 
           <div>
-
             <h3 className="mb-4 text-lg font-semibold">
               Areas for Improvement
             </h3>
@@ -257,58 +310,42 @@ const InterviewResult = () => {
                 )
               )}
             </div>
-
           </div>
 
           <hr />
 
           <div>
-
             <h3 className="text-lg font-semibold">
               Suggested Answer
             </h3>
 
-            <p className="mt-3 text-slate-600 leading-7">
-              {
-                latestFeedback?.suggestedAnswer
-              }
+            <p className="mt-3 leading-7 text-slate-600">
+              {latestFeedback?.suggestedAnswer}
             </p>
-
           </div>
 
           <hr />
 
           <div>
-
             <h3 className="text-lg font-semibold">
               AI Recommendation
             </h3>
 
             <p className="mt-3 rounded-lg bg-cyan-50 p-4 text-slate-700">
-              {
-                latestFeedback?.recommendation
-              }
+              {latestFeedback?.recommendation}
             </p>
-
           </div>
 
           <div className="flex justify-end">
-
             <Button
               variant="primary"
-              onClick={
-                handleInterviewAgain
-              }
+              onClick={handleInterviewAgain}
             >
               Interview Again
             </Button>
-
           </div>
-
         </div>
-
       </Card>
-
     </div>
   );
 };

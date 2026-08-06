@@ -1,24 +1,13 @@
 import db from "../database/database";
 
-export interface InterviewReport {
-  category: string;
-  difficulty: string;
-
-  overallScore: number;
-  communication: number;
-  technicalKnowledge: number;
-  domainKnowledge: number;
-  confidence: number;
-
-  strengths: string[];
-  areasForImprovement: string[];
-
-  suggestedAnswer: string;
-  recommendation: string;
-}
+import type {
+  InterviewReport,
+} from "../types/interview.types";
 
 export const InterviewRepository = {
-  save(report: InterviewReport) {
+  saveInterview(
+    report: InterviewReport
+  ): number {
     const statement = db.prepare(`
       INSERT INTO interviews (
         category,
@@ -50,15 +39,18 @@ export const InterviewRepository = {
 
     const result = statement.run({
       ...report,
-
-      strengths: JSON.stringify(report.strengths),
-
-      areasForImprovement: JSON.stringify(
-        report.areasForImprovement
+      strengths: JSON.stringify(
+        report.strengths
       ),
+      areasForImprovement:
+        JSON.stringify(
+          report.areasForImprovement
+        ),
     });
 
-    return result.lastInsertRowid;
+    return Number(
+      result.lastInsertRowid
+    );
   },
 
   findAll() {
