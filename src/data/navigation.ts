@@ -41,4 +41,14 @@ export const navigationItems: NavigationItem[] = [
     title: "Profile",
     path: "/profile",
   },
+  {
+  id: 9,
+  title: "Resume Analyzer",
+  path: "/resume-analyzer",
+  },
+  {
+  id: 10,
+  title: "AI Career Coach",
+  path: "/career-coach",
+  },
 ];
