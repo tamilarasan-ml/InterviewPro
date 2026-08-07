@@ -3,12 +3,12 @@ import { Request, Response } from "express";
 import { AnalyticsService } from "../services/analytics.service";
 
 export const getDashboardAnalytics = (
-  _: Request,
+  _req: Request,
   res: Response
 ) => {
   try {
     const analytics =
-      AnalyticsService.getDashboardAnalytics();
+      AnalyticsService.getAnalytics();
 
     return res.status(200).json(analytics);
   } catch (error) {
